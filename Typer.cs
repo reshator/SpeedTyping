@@ -1,43 +1,51 @@
-﻿using System.Text.RegularExpressions;
-
-public class Typer
+﻿public class Typer
 {
-    public float Time { get; set; }
-    public string? Answer { get; set; }
+    private const string path = "D:\\projects\\SpeedTyping\\words_alpha.txt";
+    private readonly string[] lines = File.ReadAllLines(path);
 
-    private float _time = 0;
+    public float Time { get; }
+    public string? Answer { get; }
+
+    private int _time;
     private string? _answer;
+    private string? text;
+        
 
     public Typer()
     {
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("Typing test");
-        Console.WriteLine("Write this text");
         Console.ResetColor();
     }
 
     public void Task()
     {
-        Console.WriteLine(GenerateText());
-        UserAnswer();
+        Thread thread = new Thread(new ThreadStart(ViewTaskText));
+        thread.Start();
+        UserInput();
     }
 
-    private string PrintTime()
+    public void UserInput()
     {
-        return string.Empty;
+        var userInput = Console.ReadLine();
     }
 
-
-    private string? UserAnswer()
+    public void ViewTaskText()
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Answer = Console.ReadLine();
-        Console.ResetColor();
-        return Answer;
+        var text = GenerateText();
+        Console.WriteLine("Write this text");
+        Console.WriteLine(text);
+        this.text = text;
+    }
+    
+    private string GenerateText()
+    {
+        var random = new Random();
+        string text = string.Empty;
+        while(text.Split(" ").Length < 5) text += lines[random.Next(lines.Length)] + " ";
+        text = text.Substring(0, text.Length - 1);
+        return text;
     }
 
-    private static string GenerateText()
-    {
-        return "Hello govern time print very from face with tell possible out";
-    }
+    
 }
