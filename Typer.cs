@@ -1,12 +1,14 @@
-﻿using System.Text.RegularExpressions;
-
-public class Typer
+﻿public class Typer
 {
-    public float Time { get; set; }
-    public string? Answer { get; set; }
+    private const string path = "D:\\projects\\SpeedTyping\\words_alpha.txt";
 
-    private float _time = 0;
+    public float Time { get; }
+    public string? Answer { get; }
+
+    private int _time;
     private string? _answer;
+        
+    private string[] lines = File.ReadAllLines(path);
 
     public Typer()
     {
@@ -16,28 +18,28 @@ public class Typer
         Console.ResetColor();
     }
 
-    public void Task()
+    public void UserInput()
     {
-        Console.WriteLine(GenerateText());
-        UserAnswer();
+        var text = GenerateText();
+        Console.WriteLine(text);
+        var userInput = Console.ReadLine();
+        Task(userInput, text);
     }
 
-    private string PrintTime()
+    private string GenerateText()
     {
-        return string.Empty;
+        var random = new Random();
+        string text = string.Empty;
+        while(text.Split(" ").Length < 5) text += lines[random.Next(lines.Length)] + " ";
+        text.Substring(0, text.Length - 1);
+        return text;
     }
 
-
-    private string? UserAnswer()
+    private void Task(string? userInput, string text)
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Answer = Console.ReadLine();
-        Console.ResetColor();
-        return Answer;
-    }
-
-    private static string GenerateText()
-    {
-        return "Hello govern time print very from face with tell possible out";
+        if (userInput == null)
+        {
+            Console.WriteLine("You're great");
+        }
     }
 }
