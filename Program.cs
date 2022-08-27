@@ -1,5 +1,7 @@
-﻿char? x = null;
+﻿using SpeedTyping;
+char? x = null;
 
+var ui = new Ui();
 var typer = new Typer();
 
 //while (x != 'n')
