@@ -21,7 +21,7 @@ namespace SpeedTyping
      
         const int MF_BYCOMMAND = 0x00000000;
         const int SC_MINIMIZE = 0xF020;
-        const int SC_MAXIMIZE = 0xF030;
+        const int SC_MAXIMIZE = 0xF030; 
         const int SC_SIZE = 0xF000;
 
 

@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
-
-namespace SpeedTyping
+﻿namespace SpeedTyping
 {
 
     public class Typer
@@ -9,43 +6,70 @@ namespace SpeedTyping
         private const string path = "D:\\projects\\SpeedTyping\\words_alpha.txt";
         private readonly string[] lines = File.ReadAllLines(path);
 
-        public float Time { get; }
-        public string? Answer { get; }
-
-        private int _time;
-        private string? _answer;
-        private string? text;
-
-
+        public byte ArraySize { get; set; } = 10;
+        
         public void Task()
         {
-            ViewTaskText();
-            UserInput();
+            var generateArray = GenerateArrayText(ArraySize);
+            var text = String.Join(" ", generateArray);
+            ViewTaskText(text);
+            UserInput(generateArray);
         }
 
-        private void UserInput()
+        private void UserInput(string[] array)
         {
-            var userInput = Console.ReadLine();
-        }
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.SetCursorPosition(2, 5);
+            //Console.Write(userInput);
+            int left = 2, top = 10;
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.SetCursorPosition(left, top);
+                var userInput = Console.ReadLine();
+                if (userInput == array[i])
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(left, 5);
+                    Console.Write(userInput);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(left, 5);
+                    Console.Write(userInput);
+                }
+                Console.ResetColor();
+                left += array[i].Length + 1;
+            }
 
-        private void ViewTaskText()
+        }
+        
+        //private void CursorMove(string element, int left = 2, int top = 10)
+        //{
+        //    Console.SetCursorPosition(left, top);
+        //    var userInput = Console.ReadLine();
+        //    left += element.Length + 1;
+
+        //}
+
+        private void ViewTaskText(string text)
         {
-            var text = GenerateText();
-            var reg = Regex.Split(text, "\\r\\n|\\r|\\n");
             Console.Write(text);
-            Console.SetCursorPosition(2, 12);
-            this.text = text;
+            Console.SetCursorPosition(2, 12); 
         }
 
-        private string GenerateText()
+
+        private string[] GenerateArrayText(int arraySize)
         {
             var random = new Random();
-            string text = string.Empty;
-            while (text.Split(" ").Length < 10) text += lines[random.Next(lines.Length)] + " ";
-            text = text.Substring(0, text.Length - 1);
-            return text;
-        }
+            string[] text_array = new string[arraySize];
+            for (int i = 0; i < text_array.Length; i++)
+            {
+                text_array[i] = lines[random.Next(lines.Length)];
+            }
 
+            return text_array;
+        }
 
     }
 }
