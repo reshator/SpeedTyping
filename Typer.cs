@@ -1,10 +1,17 @@
+
 ﻿namespace SpeedTyping
 {
+public class Typer
+{
+    private const string path = "D:\\projects\\SpeedTyping\\words_alpha.txt";
 
-    public class Typer
-    {
-        private const string path = "D:\\projects\\SpeedTyping\\words_alpha.txt";
-        private readonly string[] lines = File.ReadAllLines(path);
+    public float Time { get; }
+    public string? Answer { get; }
+
+    private int _time;
+    private string? _answer;
+        
+    private string[] lines = File.ReadAllLines(path);
 
         public byte ArraySize { get; set; } = 10;
         
@@ -70,6 +77,7 @@
 
             return text_array;
         }
+
 
     }
 }
