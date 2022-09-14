@@ -1,20 +1,24 @@
-
-﻿namespace SpeedTyping
+using System.IO; 
+namespace SpeedTyping
 {
 public class Typer
 {
-    private const string path = "D:\\projects\\SpeedTyping\\words_alpha.txt";
+   
+    private const string path = "words_alpha.txt";
 
     public float Time { get; }
     public string? Answer { get; }
 
     private int _time;
     private string? _answer;
-        
+    private static string directory;
+
     private string[] lines = File.ReadAllLines(path);
 
         public byte ArraySize { get; set; } = 10;
-        
+        public Typer() {
+          directory = Directory.GetCurrentDirectory() + path;
+        } 
         public void Task()
         {
             var generateArray = GenerateArrayText(ArraySize);
