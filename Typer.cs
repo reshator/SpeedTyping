@@ -32,7 +32,7 @@ public class Typer
             //Console.ForegroundColor = ConsoleColor.Green;
             //Console.SetCursorPosition(2, 5);
             //Console.Write(userInput);
-            int left = 2, top = 10;
+            int left = 2, top = 12;
             for (int i = 0; i < array.Length; i++)
             {
                 Console.SetCursorPosition(left, top);
