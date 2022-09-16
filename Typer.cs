@@ -52,7 +52,7 @@ public class Typer
                 var userInput = Console.ReadLine();
                 Console.Beep();
                 Console.SetCursorPosition(2, top);
-                Console.Write(new String(' ', Console.BufferWidth - 1));
+                Console.Write(new String(' ', Console.BufferWidth));
                 var word = array[i];
                 Console.SetCursorPosition(left, 1);
 
