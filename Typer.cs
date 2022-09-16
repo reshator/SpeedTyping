@@ -45,12 +45,14 @@ public class Typer
 
         private void UserInput(string[] array)
         {
-            
             int left = 2, top = 3;
             for (int i = 0; i < array.Length; i++)
             {
-                Console.SetCursorPosition(left, top);
+                Console.SetCursorPosition(2, top);
                 var userInput = Console.ReadLine();
+                Console.Beep();
+                Console.SetCursorPosition(2, top);
+                Console.Write(new String(' ', Console.BufferWidth - 1));
                 var word = array[i];
                 Console.SetCursorPosition(left, 1);
 
@@ -65,6 +67,7 @@ public class Typer
                     Console.Write(word);
                 }
                 Console.ResetColor();
+                
                 left += array[i].Length + 1;
             }
 
