@@ -16,9 +16,7 @@ public class Typer
     private string[] lines = File.ReadAllLines(path);
 
         public byte ArraySize { get; set; } = 10;
-        public Typer() {
-          directory = Directory.GetCurrentDirectory() + path;
-        } 
+         
         public void Task()
         {
             var generateArray = GenerateArrayText(ArraySize);
@@ -37,17 +35,18 @@ public class Typer
             {
                 Console.SetCursorPosition(left, top);
                 var userInput = Console.ReadLine();
-                if (userInput == array[i])
+                var word = array[i];
+                if (userInput == word) 
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.SetCursorPosition(left, 1);
-                    Console.Write(userInput);
+                    Console.Write(word);
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.SetCursorPosition(left, 1);
-                    Console.Write(userInput);
+                    Console.Write(word);
                 }
                 Console.ResetColor();
                 left += array[i].Length + 1;
