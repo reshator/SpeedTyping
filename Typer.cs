@@ -10,19 +10,30 @@ namespace SpeedTyping
         public static byte ArraySize { get; set; } = 10;
         
         private string[] lines = File.ReadAllLines(Path);
+        private int leftGap = 2, topGap = 3;
+
+
+        public Typer(string[] args) 
+        {
+            string arg = string.Empty;
+
+            foreach (var item in args)
+            {
+                if (item == "-h")
+                {
+                    //Console.WriteLine("help pls");
+                }
+            }
+            
+
+        }
 
         public void Task()
         {
-            //private static string[] lines = File.ReadAllLines();
             var generatedArray = GenerateArrayText(ArraySize, lines);
             var text = String.Join(" ", generatedArray);
-            ViewTaskText(text);
+            Ui.ViewTaskText(text);
             UserInput(generatedArray);
-        }
-
-        private void ViewTaskText(string text)
-        {
-            Console.Write(text);
         }
 
         private string[] GenerateArrayText(int arraySize, string[] arrayText)
@@ -39,16 +50,15 @@ namespace SpeedTyping
 
         private void UserInput(string[] array)
         {
-            int left = 2, top = 3;
             for (int i = 0; i < array.Length; i++)
             {
-                Console.SetCursorPosition(2, top);
+                Console.SetCursorPosition(2, topGap);
                 var userInput = Console.ReadLine();
                 Console.Beep();
-                Console.SetCursorPosition(2, top);
+                Console.SetCursorPosition(2, topGap);
                 Console.Write(new String(' ', Console.BufferWidth));
                 var word = array[i];
-                Console.SetCursorPosition(left, 1);
+                Console.SetCursorPosition(leftGap, 1);
 
                 if (userInput == word)
                 {
@@ -62,7 +72,7 @@ namespace SpeedTyping
                 }
                 Console.ResetColor();
 
-                left += array[i].Length + 1;
+                leftGap += array[i].Length + 1;
             }
 
         }

@@ -8,29 +8,25 @@ using System.Threading.Tasks;
 namespace SpeedTyping
 {
 
-    internal class Ui
+    public static class Ui
     {
 
-        public Ui()
+        public static void Start()
         {
             Console.Title = "SpeedTyping";
             Console.Clear();
-            UpdateFrame();
-                    
         }
-        public void UpdateFrame()
+
+        public static void ViewTaskText(string text)
         {
             Console.SetCursorPosition(2, 1);
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Write(text);
         }
-        
-        private void SingleLine()
-        {
-            for (int i = 0; i < Console.WindowWidth; i++)
-            {
-                Console.Write(" ");
-            }
 
+        public static void UpdateFrame()
+        {
+            //Console.SetCursorPosition(2, 1);
         }
+
     }
 }

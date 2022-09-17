@@ -1,7 +1,11 @@
 ﻿using SpeedTyping;
 
-var ui = new Ui();
-var typer = new Typer();
-typer.Task();
-
-
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Ui.Start();
+        var typer = new Typer(args);
+        typer.Task();
+    }
+}
