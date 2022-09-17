@@ -5,13 +5,6 @@ namespace SpeedTyping {
 
 public static class ArgsReader {
 
-
-    private static List<Command> ArgReader() 
-    {
-        string fileName = "static//commands//commands.json";
-        string jsonString = File.ReadAllText(fileName);
-        return JsonSerializer.Deserialize<List<Command>>(jsonString)!;
-    }
     
     public static void ArgHandler(string[] args) 
     {
@@ -25,6 +18,12 @@ public static class ArgsReader {
                 Console.WriteLine(command.text);
             }
         }
+    }
+    private static List<Command> ArgReader() 
+    {
+        string fileName = "static//commands//commands.json";
+        string jsonString = File.ReadAllText(fileName);
+        return JsonSerializer.Deserialize<List<Command>>(jsonString)!;
     }
 }
 
