@@ -1,43 +1,37 @@
-using System.IO; 
+using System.IO;
 
 namespace SpeedTyping
 {
 
-public class Typer
-{
-   
-    private const string path = "static//dict//1-1000.txt";
+    public class Typer
+    {
 
-    public float Time { get; }
-    public string? Answer { get; }
+        public static string Path { get; set; } = "static//dict//1-1000.txt";
+        public static byte ArraySize { get; set; } = 10;
+        
+        private string[] lines = File.ReadAllLines(Path);
 
-    private int _time;
-    private string? _answer;
-
-    private string[] lines = File.ReadAllLines(path);
-
-    public byte ArraySize { get; set; } = 10;
-         
         public void Task()
         {
-            var generatedArray = GenerateArrayText(ArraySize);
+            //private static string[] lines = File.ReadAllLines();
+            var generatedArray = GenerateArrayText(ArraySize, lines);
             var text = String.Join(" ", generatedArray);
             ViewTaskText(text);
             UserInput(generatedArray);
         }
 
-        private void ViewTaskText(string text) {
+        private void ViewTaskText(string text)
+        {
             Console.Write(text);
-            Console.SetCursorPosition(1,5);
         }
 
-        private string[] GenerateArrayText(int arraySize)
-       {
+        private string[] GenerateArrayText(int arraySize, string[] arrayText)
+        {
             var random = new Random();
             string[] text_array = new string[arraySize];
             for (int i = 0; i < text_array.Length; i++)
             {
-                text_array[i] = lines[random.Next(lines.Length)];
+                text_array[i] = arrayText[random.Next(lines.Length)];
             }
 
             return text_array;
@@ -56,7 +50,7 @@ public class Typer
                 var word = array[i];
                 Console.SetCursorPosition(left, 1);
 
-                if (userInput == word) 
+                if (userInput == word)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(word);
@@ -67,7 +61,7 @@ public class Typer
                     Console.Write(word);
                 }
                 Console.ResetColor();
-                
+
                 left += array[i].Length + 1;
             }
 
