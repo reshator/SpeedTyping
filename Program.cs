@@ -2,10 +2,15 @@
 
 internal class Program
 {
+
     private static void Main(string[] args)
     {
         Ui.Start();
-        var typer = new Typer(args);
+        ArgsReader.ArgHandler(args);
+        var typer = new Typer();
         typer.Task();
     }
+    
+
+
 }

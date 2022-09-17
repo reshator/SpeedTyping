@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpeedTyping
+﻿namespace SpeedTyping
 {
 
     public static class Ui
@@ -17,7 +10,7 @@ namespace SpeedTyping
             Console.Clear();
         }
 
-        public static void ViewTaskText(string text)
+        public static void ViewText(string text, int left, int top)
         {
             Console.SetCursorPosition(2, 1);
             Console.Write(text);

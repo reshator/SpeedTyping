@@ -1,0 +1,12 @@
+[
+        {
+            "name": "help",
+            "param": "-h",
+            "text": "Hello"
+        },
+        {
+            "name": "language",
+            "param": "-l",
+            "text": "Changing a generator's dictionary"
+        }
+]

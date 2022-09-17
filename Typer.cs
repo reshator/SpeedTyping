@@ -8,31 +8,16 @@ namespace SpeedTyping
 
         public static string Path { get; set; } = "static//dict//1-1000.txt";
         public static byte ArraySize { get; set; } = 10;
-        
+
         private string[] lines = File.ReadAllLines(Path);
         private int leftGap = 2, topGap = 3;
 
-
-        public Typer(string[] args) 
-        {
-            string arg = string.Empty;
-
-            foreach (var item in args)
-            {
-                if (item == "-h")
-                {
-                    //Console.WriteLine("help pls");
-                }
-            }
-            
-
-        }
-
+    
         public void Task()
         {
             var generatedArray = GenerateArrayText(ArraySize, lines);
             var text = String.Join(" ", generatedArray);
-            Ui.ViewTaskText(text);
+            Ui.ViewText(text, leftGap, topGap);
             UserInput(generatedArray);
         }
 
