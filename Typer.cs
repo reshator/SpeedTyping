@@ -42,7 +42,7 @@ namespace SpeedTyping
                 var word = array[i];
                 var checkedWord = CheckWord(word, userInput);
 
-                Ui.ViewText(word, leftGap, topGap, ConsoleColor.Green);
+                Ui.ViewText(word, leftGap, topGap, checkedWord);
                 Console.ResetColor();
 
                 leftGap += word.Length + 1;
