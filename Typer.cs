@@ -45,8 +45,7 @@ namespace SpeedTyping
                 Ui.ViewText(word, leftGap, topGap, ConsoleColor.Green);
                 Console.ResetColor();
 
-
-                //leftGap += array[i].Length + 1;
+                leftGap += word.Length + 1;
             }
 
         }
