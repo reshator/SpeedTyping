@@ -1,4 +1,4 @@
-using System.IO;
+using System;
 
 namespace SpeedTyping
 {
@@ -6,7 +6,7 @@ namespace SpeedTyping
     public class Typer
     {
 
-        public static string Path { get; set; } = "static//dict//1-1000.txt";
+        public static string Path { get; set; } = "static\\dict\\1-1000.txt";
         public static byte ArraySize { get; set; } = 10;
 
         private string[] lines = File.ReadAllLines(Path);

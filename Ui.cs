@@ -12,7 +12,7 @@
 
         public static void ViewText(string text, int left, int top)
         {
-            Console.SetCursorPosition(2, 1);
+            Console.SetCursorPosition(left, top);
             Console.Write(text);
         }
 
