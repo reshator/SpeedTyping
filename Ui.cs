@@ -10,8 +10,9 @@
             Console.Clear();
         }
 
-        public static void ViewText(string text, int left, int top)
+        public static void ViewText(string text, int left, int top, ConsoleColor color)
         {
+            Console.ForegroundColor = color;
             Console.SetCursorPosition(left, top);
             Console.Write(text);
         }

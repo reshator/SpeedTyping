@@ -12,13 +12,13 @@ namespace SpeedTyping
         private string[] lines = File.ReadAllLines(Path);
         private int leftGap = 2, topGap = 3;
 
-    
+
         public void Task()
         {
             var generatedArray = GenerateArrayText(ArraySize, lines);
             var text = String.Join(" ", generatedArray);
-            Ui.ViewText(text, leftGap, topGap);
-            UserInput(generatedArray);
+            Ui.ViewText(text, leftGap, topGap, ConsoleColor.Yellow);
+            InputHandler(generatedArray);
         }
 
         private string[] GenerateArrayText(int arraySize, string[] arrayText)
@@ -33,33 +33,44 @@ namespace SpeedTyping
             return text_array;
         }
 
-        private void UserInput(string[] array)
+        private void InputHandler(string[] array)
         {
+
             for (int i = 0; i < array.Length; i++)
             {
-                Console.SetCursorPosition(2, topGap);
-                var userInput = Console.ReadLine();
-                Console.Beep();
-                Console.SetCursorPosition(2, topGap);
-                Console.Write(new String(' ', Console.BufferWidth));
+                var userInput = UserInput();
                 var word = array[i];
-                Console.SetCursorPosition(leftGap, 1);
+                var checkedWord = CheckWord(word, userInput);
 
-                if (userInput == word)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(word);
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(word);
-                }
+                Ui.ViewText(word, leftGap, topGap, ConsoleColor.Green);
                 Console.ResetColor();
 
-                leftGap += array[i].Length + 1;
+
+                //leftGap += array[i].Length + 1;
             }
 
+        }
+
+        private string? UserInput()
+        {
+
+            Console.SetCursorPosition(2, 5);
+            var userInput = Console.ReadLine()!;
+            Console.SetCursorPosition(2, 5);
+            Console.Write(new String(' ', Console.BufferWidth - 1));
+            return userInput;
+        }
+
+        private ConsoleColor CheckWord(string word, string userInput)
+        {
+            if (userInput == word)
+            {
+                return ConsoleColor.Green;
+            }
+            else
+            {
+                return ConsoleColor.Red;
+            }
         }
     }
 }
