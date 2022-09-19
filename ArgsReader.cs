@@ -12,7 +12,7 @@ public static class ArgsReader {
     }   
     private static List<Command> ArgReader() 
     {
-        string fileName = "static\\commands\\commands.json";
+        string fileName = @"static/commands/commands.json";
         string jsonString = File.ReadAllText(fileName);
         return JsonSerializer.Deserialize<List<Command>>(jsonString)!;
     }
