@@ -8,5 +8,10 @@
             "name": "language",
             "param": "-l",
             "text": "Changing a generator's dictionary"
+        },
+        {
+            "name": "words",
+            "param": "-w",
+            "text": "words count"
         }
 ]
