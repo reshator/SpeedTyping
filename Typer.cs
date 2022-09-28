@@ -3,17 +3,15 @@
 namespace SpeedTyping
 {
 
-    public class Typer
+    public static class Typer
     {
-
-        //public static string Path { get; set; } = "D:\\projects\\SpeedTyping\\static\\dict\\1-1000.txt";
         public static byte ArraySize { get; set; } = 10;
-        
-        private static string path = "..\\..\\..\\static\\dict\\1-1000.txt";
-        private string[] lines = File.ReadAllLines(path);
-        private int leftGap = 2, topGap = 3;
 
-        public void Task()
+        private static string path = "..\\..\\..\\static\\dict\\1-1000.txt";
+        private static string[] lines = File.ReadAllLines(path);
+        private static int leftGap = 2, topGap = 3;
+
+        public static void Task()
         {
             var generatedArray = GenerateArrayText(ArraySize, lines);
             var text = String.Join(" ", generatedArray);
@@ -21,7 +19,7 @@ namespace SpeedTyping
             InputHandler(generatedArray);
         }
 
-        private string[] GenerateArrayText(int arraySize, string[] arrayText)
+        private static string[] GenerateArrayText(int arraySize, string[] arrayText)
         {
             var random = new Random();
             string[] text_array = new string[arraySize];
@@ -33,7 +31,7 @@ namespace SpeedTyping
             return text_array;
         }
 
-        private void InputHandler(string[] array)
+        private static void InputHandler(string[] array)
         {
 
             for (int i = 0; i < array.Length; i++)
@@ -50,7 +48,7 @@ namespace SpeedTyping
 
         }
 
-        private string? UserInput()
+        private static string? UserInput()
         {
 
             Console.SetCursorPosition(2, 5);
@@ -60,7 +58,7 @@ namespace SpeedTyping
             return userInput;
         }
 
-        private ConsoleColor CheckWord(string word, string userInput)
+        private static ConsoleColor CheckWord(string word, string userInput)
         {
             if (userInput == word)
             {
