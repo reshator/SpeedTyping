@@ -4,13 +4,6 @@ using System.CommandLine;
 internal class Program
 {
 
-    //private static void Main(string[] args)
-    //{
-    //    Ui.Start();
-    //    //if (args.Length != 0) ArgsReader.ArgHandler(args);
-    //    var typer = new Typer();
-    //    typer.Task();
-    //}
     static async Task<int> Main(string[] args)
     {
         var wordsOption = new Option<byte>(
@@ -19,16 +12,22 @@ internal class Program
             getDefaultValue: () => Typer.ArraySize
             );
 
+        var langOption = new Option<string>(
+            name: "--lang",
+            description: "Change the word list",
+            getDefaultValue: () => "");
+
         var rootCommand = new RootCommand("Simple typing test for CLI");
         rootCommand.AddOption(wordsOption);
+        rootCommand.AddOption(langOption);
 
-        rootCommand.SetHandler((wordsOptionValue) =>
+        rootCommand.SetHandler((wordsOptionValue, langOptionValue) =>
         {
             Ui.Start();
             Typer.ArraySize = wordsOptionValue;
             Typer.Task();
 
-        }, wordsOption);
+        }, wordsOption, langOption);
 
         return await rootCommand.InvokeAsync(args);
 

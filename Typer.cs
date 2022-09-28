@@ -6,9 +6,8 @@ namespace SpeedTyping
     public static class Typer
     {
         public static byte ArraySize { get; set; } = 10;
-
-        private static string path = "..\\..\\..\\static\\dict\\1-1000.txt";
-        private static string[] lines = File.ReadAllLines(path);
+        public static string langPath = "..\\..\\..\\static\\dict\\1-1000.txt";
+        private static string[] lines = File.ReadAllLines(langPath);
         private static int leftGap = 2, topGap = 3;
 
         public static void Task()
