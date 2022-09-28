@@ -6,7 +6,7 @@ internal class Program
     private static void Main(string[] args)
     {
         Ui.Start();
-        if (args.Length != 0) ArgsReader.ArgHandler(args);
+        //if (args.Length != 0) ArgsReader.ArgHandler(args);
         var typer = new Typer();
         typer.Task();
     }
