@@ -15,7 +15,9 @@ internal class Program
         var langOption = new Option<string>(
             name: "--lang",
             description: "Change the word list",
-            getDefaultValue: () => "");
+            getDefaultValue: () => Typer.Lang);
+
+
 
         var rootCommand = new RootCommand("Simple typing test for CLI");
         rootCommand.AddOption(wordsOption);
@@ -25,6 +27,7 @@ internal class Program
         {
             Ui.Start();
             Typer.ArraySize = wordsOptionValue;
+            Typer.Lang = langOptionValue;
             Typer.Task();
 
         }, wordsOption, langOption);

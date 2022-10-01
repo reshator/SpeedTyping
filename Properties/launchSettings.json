@@ -1,8 +1,7 @@
 {
   "profiles": {
     "SpeedTyping": {
-      "commandName": "Project",
-      "commandLineArgs": "--words 20"
+      "commandName": "Project"
     }
   }
 }

@@ -1,21 +1,33 @@
-
-
 namespace SpeedTyping
 {
 
     public static class Typer
     {
         public static byte ArraySize { get; set; } = 10;
-        public static string langPath = "..\\..\\..\\static\\dict\\1-1000.txt";
-        private static string[] lines = File.ReadAllLines(langPath);
+        public static string Lang { get; set; } = "1-1000.txt";
+        private static readonly string dir = "..\\..\\..\\static\\dict\\";
         private static int leftGap = 2, topGap = 3;
 
         public static void Task()
         {
+            var lines = File.ReadAllLines(dir + Lang);
             var generatedArray = GenerateArrayText(ArraySize, lines);
             var text = String.Join(" ", generatedArray);
             Ui.ViewText(text, leftGap, topGap, ConsoleColor.Yellow);
             InputHandler(generatedArray);
+        }
+
+        public static void GetFileName(string langOptionValue)
+        {
+            string[] files = Directory.GetFiles(dir);
+            foreach (var file in files)
+            {
+                if (langOptionValue == Path.GetFileName(file))
+                {
+                    Typer.Lang = file;
+                }
+            }
+            
         }
 
         private static string[] GenerateArrayText(int arraySize, string[] arrayText)
@@ -24,7 +36,7 @@ namespace SpeedTyping
             string[] text_array = new string[arraySize];
             for (int i = 0; i < text_array.Length; i++)
             {
-                text_array[i] = arrayText[random.Next(lines.Length)];
+                text_array[i] = arrayText[random.Next(arrayText.Length)];
             }
 
             return text_array;
@@ -37,7 +49,7 @@ namespace SpeedTyping
             {
                 var userInput = UserInput();
                 var word = array[i];
-                var checkedWord = CheckWord(word, userInput);
+                var checkedWord = CheckWord(word, userInput!);
 
                 Ui.ViewText(word, leftGap, topGap, checkedWord);
                 Console.ResetColor();
