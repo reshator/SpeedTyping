@@ -28,7 +28,11 @@ internal class Program
             Ui.Start();
             Typer.ArraySize = wordsOptionValue;
             Typer.Lang = langOptionValue;
+            Ui.SetTimer();
             Typer.Task();
+            
+            
+            
 
         }, wordsOption, langOption);
 

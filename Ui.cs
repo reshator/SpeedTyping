@@ -1,4 +1,7 @@
-﻿namespace SpeedTyping
+﻿using System.Timers;
+using Timer = System.Threading.Timer;
+
+namespace SpeedTyping
 {
 
     public static class Ui
@@ -17,9 +20,22 @@
             Console.Write(text);
         }
 
-        public static void UpdateFrame()
+
+        public static void SetTimer()
         {
-            //Console.SetCursorPosition(2, 1);
+            Timer t = new Timer(ComputeBoundOp, 0, 0, 0);
+        }
+
+        private static void ComputeBoundOp(Object state)
+        {
+            int x = 30;
+            while (x > 0)
+            {
+                x -= 1;
+                Console.Title = Convert.ToString(x);
+                Thread.Sleep(1000);
+            
+            }
         }
 
     }

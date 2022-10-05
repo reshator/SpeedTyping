@@ -11,24 +11,12 @@ namespace SpeedTyping
         public static void Task()
         {
             var lines = File.ReadAllLines(dir + Lang);
-            var generatedArray = GenerateArrayText(ArraySize, lines);
+            var generatedArray = GenerateArrayText(ArraySize, lines);   
             var text = String.Join(" ", generatedArray);
             Ui.ViewText(text, leftGap, topGap, ConsoleColor.Yellow);
             InputHandler(generatedArray);
         }
 
-        public static void GetFileName(string langOptionValue)
-        {
-            string[] files = Directory.GetFiles(dir);
-            foreach (var file in files)
-            {
-                if (langOptionValue == Path.GetFileName(file))
-                {
-                    Typer.Lang = file;
-                }
-            }
-            
-        }
 
         private static string[] GenerateArrayText(int arraySize, string[] arrayText)
         {
